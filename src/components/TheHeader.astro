@@ -1,6 +1,14 @@
 ---
 import { Image } from 'astro:assets'
-const links = [
+
+interface link {
+  name: string
+  href: string
+}
+
+const test = 5
+
+const links: link[] = [
   {
     name: 'About',
     href: '#about',
