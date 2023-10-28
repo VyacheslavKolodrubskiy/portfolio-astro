@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro'
+import TheHeader from '@components/TheHeader.astro'
+import TheFooter from '@components/TheFooter.astro'
 import SectionHero from '@sections/SectionHero.astro'
 import SectionAbout from '@sections/SectionAbout.astro'
 import SectionLatestWorks from '@sections/SectionLatestWorks.astro'
@@ -7,8 +9,14 @@ import SectionCommunication from '@sections/SectionCommunication.astro'
 ---
 
 <BaseLayout title="Personal portfolio">
-  <SectionHero />
-  <SectionAbout />
-  <SectionLatestWorks />
-  <SectionCommunication />
+  <div class="flex flex-col min-h-screen overflow-x-hidden">
+    <TheHeader />
+    <main class="flex-grow">
+      <SectionHero />
+      <SectionAbout />
+      <SectionLatestWorks />
+      <SectionCommunication />
+    </main>
+    <TheFooter />
+  </div>
 </BaseLayout>
