@@ -6,32 +6,32 @@ interface link {
   href: string
 }
 
-const test = 5
-
 const links: link[] = [
   {
     name: 'About',
-    href: '#about',
+    href: '/about',
   },
   {
     name: 'Project',
-    href: '#project',
+    href: '/projects',
   },
   {
     name: 'Contacts',
-    href: '#contacts',
+    href: '/contacts',
   },
 ]
 ---
 
 <header class="py-4">
   <div class="container flex items-center justify-between">
-    <Image
-      src="/logo.svg"
-      width="40"
-      height="40"
-      alt="logo"
-    />
+    <a href="/">
+      <Image
+        src="/logo.svg"
+        width="24"
+        height="24"
+        alt="logo"
+      />
+    </a>
     <nav>
       <ul class="items-center flex text-[clamp(1.5rem,3vw,2rem)] space-x-10">
         {

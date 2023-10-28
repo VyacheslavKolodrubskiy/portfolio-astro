@@ -1,7 +1,9 @@
 ---
+import type { HTMLAttributes } from 'astro/types'
+
 import BaseSection from '@components/BaseSection.astro'
 
-interface Props extends astroHTML.JSX.HTMLAttributes {}
+type Props = HTMLAttributes<'section'>
 
 const works = [
   {

@@ -1,17 +1,30 @@
 ---
 import BaseSection from '@components/BaseSection.astro'
 import BaseButton from '@components/BaseButton.astro'
+import { Image } from 'astro:assets'
 ---
 
 <BaseSection>
-  <h1 class="text-[clamp(1.5rem,8vw,9rem)] mb-10">
+  <h1
+    class="mb-20 max-w-7xl font-medium text-[clamp(2.5rem,8vw,8rem)] leading-none"
+  >
     Welcome to my digital playground. Make Your online visions a reality.
   </h1>
 
   <div class="flex justify-between">
-    <BaseButton class="hidden">let's connect with me</BaseButton>
+    <BaseButton>
+      let's connect with me
+      <slot #icon-right>
+        <Image
+          src="/arrow.svg"
+          alt="arrow-right"
+          width="20"
+          height="20"
+        />
+      </slot>
+    </BaseButton>
 
-    <p class="max-w-3xl text-[clamp(1rem,5vw,2rem)] uppercase">
+    <p class="max-w-3xl text-[clamp(1rem,5vw,2rem)] ml-auto uppercase">
       in the world of web development, i find my creative spirit truly alive.
       crafting elegant, user-friendly interfaces and solving complex problems
       using code is where i feel most at home. it's the perfect blend of art and

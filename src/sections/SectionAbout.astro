@@ -1,20 +1,12 @@
 ---
 import BaseSection from '@components/BaseSection.astro'
-import { Image } from 'astro:assets'
 ---
 
 <BaseSection class="bg-white rounded-3xl text-black">
   <h2 class="text-[clamp(1.5rem,8vw,9rem)] mb-4">About me.</h2>
 
   <div class="flex flex-wrap justify-between gap-10">
-    <Image
-      class="w-full h-full"
-      src="/damn-ice-cube.gif"
-      alt="me"
-      width="600"
-      height="600"
-    />
-    <div class="text-[clamp(1rem,5vw,2rem)]">
+    <div class="text-[clamp(1rem,5vw,2rem)] max-w-3xl ml-auto">
       <p>
         My journey in this field has been an exhilarating one, marked by
         continuous learning and a deep commitment to creating exceptional user

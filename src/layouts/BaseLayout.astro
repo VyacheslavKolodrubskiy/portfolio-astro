@@ -1,0 +1,89 @@
+---
+import { ViewTransitions } from 'astro:transitions'
+import TheFooter from '@components/TheFooter.astro'
+import TheHeader from '@components/TheHeader.astro'
+
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Astro description"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon.svg"
+    />
+    <meta
+      name="generator"
+      content={Astro.generator}
+    />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body>
+    <div class="flex flex-col min-h-screen overflow-x-hidden">
+      <TheHeader />
+      <main class="flex-grow">
+        <slot />
+      </main>
+      <TheFooter />
+    </div>
+
+    <script>
+      import Lenis from '@studio-freight/lenis'
+
+      const lenis = new Lenis()
+
+      function raf(time: number) {
+        lenis.raf(time)
+        requestAnimationFrame(raf)
+      }
+
+      requestAnimationFrame(raf)
+    </script>
+    <style is:global>
+      html,
+      body,
+      :root {
+        font-family: 'Inter' sans-serif;
+        background: #000000;
+        color: #ffffff;
+        height: 100%;
+      }
+
+      html.lenis {
+        height: auto;
+      }
+
+      .lenis.lenis-smooth {
+        scroll-behavior: auto;
+      }
+
+      .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
+
+      .lenis.lenis-stopped {
+        overflow: hidden;
+      }
+
+      .lenis.lenis-scrolling iframe {
+        pointer-events: none;
+      }
+    </style>
+  </body>
+</html>
