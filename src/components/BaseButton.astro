@@ -7,7 +7,7 @@ type Props = HTMLAttributes<'button'> & {
   iconLeft?: string
 }
 
-const { class: classes, iconRight, iconLeft, ...rest } = Astro.props
+const { class: classes, iconRight, iconLeft, ...rest } = Astro.props as Props
 ---
 
 <button

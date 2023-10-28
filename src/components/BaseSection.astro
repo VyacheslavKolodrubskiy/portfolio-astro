@@ -3,7 +3,7 @@ import type { HTMLAttributes } from 'astro/types'
 
 type Props = HTMLAttributes<'section'>
 
-const { class: classes, ...rest } = Astro.props
+const { class: classes, ...rest } = Astro.props as Props
 ---
 
 <section

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "baseUrl": ".",
     "paths": {
       "@assets/*": [
@@ -22,6 +23,9 @@
       ],
       "@libs/*": [
         "src/libs/*"
+      ],
+      "@shared/*": [
+        "src/shared/*"
       ],
     }
   },
