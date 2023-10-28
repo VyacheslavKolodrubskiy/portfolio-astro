@@ -20,8 +20,8 @@
       "@styles/*": [
         "src/styles/*"
       ],
-      "@libraries/*": [
-        "src/libraries/*"
+      "@libs/*": [
+        "src/libs/*"
       ],
     }
   },
