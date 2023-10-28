@@ -2,6 +2,7 @@
 import type { HTMLAttributes } from 'astro/types'
 
 import BaseSection from '@components/BaseSection.astro'
+import Heading from '@components/Heading.astro'
 
 type Props = HTMLAttributes<'section'>
 
@@ -19,8 +20,7 @@ const works = [
 ---
 
 <BaseSection id="latest-works">
-  <h2 class="text-[clamp(1.5rem,8vw,9rem)] mb-20">Latest works.</h2>
-
+  <Heading>Latest works.</Heading>
   <ul>
     {
       works.map((work) => (
