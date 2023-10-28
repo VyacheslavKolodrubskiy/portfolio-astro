@@ -2,8 +2,30 @@
 import BaseSection from '@components/BaseSection.astro'
 
 interface Props extends astroHTML.JSX.HTMLAttributes {}
+
+const works = [
+  {
+    title: 'Focus-App Blocker',
+  },
+  {
+    title: 'Indigence-Agency Website',
+  },
+  {
+    title: 'Eneftee-NFT Launchpad Website',
+  },
+]
 ---
 
 <BaseSection>
-  <h2 class="text-[clamp(1.5rem,8vw,9rem)]">Latest works.</h2>
+  <h2 class="text-[clamp(1.5rem,8vw,9rem)] mb-20">Latest works.</h2>
+
+  <ul>
+    {
+      works.map((work) => (
+        <li class="py-10 text-[clamp(1rem,5vw,3rem)] border-t border-b">
+          {work.title}
+        </li>
+      ))
+    }
+  </ul>
 </BaseSection>

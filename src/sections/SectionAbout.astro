@@ -3,21 +3,33 @@ import BaseSection from '@components/BaseSection.astro'
 import { Image } from 'astro:assets'
 ---
 
-<BaseSection class="bg-white text-black">
+<BaseSection class="bg-white rounded-3xl text-black">
   <h2 class="text-[clamp(1.5rem,8vw,9rem)] mb-4">About me.</h2>
 
-  <div class="flex justify-between gap-10">
+  <div class="flex flex-wrap justify-between gap-10">
     <Image
+      class="w-full h-full"
       src="/damn-ice-cube.gif"
       alt="me"
-      width="5000"
-      height="5000"
+      width="600"
+      height="600"
     />
-    <p class="text-[clamp(1rem,5vw,2rem)]">
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis,
-      cumque culpa quas, aut voluptas fugiat, cupiditate provident voluptatum
-      temporibus dicta vero iste. Laborum ducimus accusamus quam at doloremque
-      velit magnam?
-    </p>
+    <div class="text-[clamp(1rem,5vw,2rem)]">
+      <p>
+        My journey in this field has been an exhilarating one, marked by
+        continuous learning and a deep commitment to creating exceptional user
+        experiences.
+      </p>
+      <p>
+        Throughout my career, I've had the privilege of working on a diverse
+        range of projects, from e-commerce platforms to interactive web
+        applications.
+      </p>
+      <p>
+        My primary focus has always been on crafting clean, intuitive, and
+        visually appealing user interfaces. I take pride in my ability to
+        transform complex ideas into elegant, user-friendly designs.
+      </p>
+    </div>
   </div>
 </BaseSection>

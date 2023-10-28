@@ -1,12 +1,14 @@
 ---
-interface Props extends astroHTML.JSX.HTMLAttributes {}
+import type { HTMLAttributes } from 'astro/types'
 
-const { class: className } = Astro.props
+type Props = HTMLAttributes<'button'>
+
+const { class: classes } = Astro.props
 ---
 
 <button
   type="button"
-  class="py-6 px-4 rounded-full border border-white bg-black"
+  class:list={['py-6 px-4 rounded-full border border-white bg-black', classes]}
 >
   <slot />
 </button>
