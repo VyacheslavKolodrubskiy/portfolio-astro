@@ -1,7 +1,18 @@
 ---
-interface Props {}
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'footer'>
+
+const { class: classes, ...rest } = Astro.props as Props
 ---
 
-<footer class="container text-center md:py-6 py-4">
-  copyright &copy; {new Date().getFullYear()}
+<footer
+  class:list={['md:py-6 py-4', classes]}
+  {...rest}
+>
+  <div class="container">
+    <small class="text-center">
+      copyright &copy; {new Date().getFullYear()}
+    </small>
+  </div>
 </footer>
