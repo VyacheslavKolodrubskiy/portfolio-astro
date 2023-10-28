@@ -16,7 +16,13 @@
       ],
       "@sections/*": [
         "src/sections/*"
-      ]
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
+      "@libraries/*": [
+        "src/libraries/*"
+      ],
     }
   },
   "extends": "astro/tsconfigs/strict"

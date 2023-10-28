@@ -1,4 +1,6 @@
 ---
+import '@styles/global.css'
+
 interface Props {
   title: string
 }
@@ -52,51 +54,6 @@ const { title } = Astro.props
   </head>
   <body>
     <slot />
-
-    <script>
-      import Lenis from '@studio-freight/lenis'
-
-      const lenis = new Lenis()
-
-      function raf(time: number) {
-        lenis.raf(time)
-        requestAnimationFrame(raf)
-      }
-
-      requestAnimationFrame(raf)
-    </script>
-    <style is:global>
-      html,
-      body,
-      :root {
-        height: 100%;
-      }
-
-      body {
-        font-family: 'Inter' sans-serif;
-        background: #000000;
-        color: #ffffff;
-      }
-
-      html.lenis {
-        height: auto;
-      }
-
-      .lenis.lenis-smooth {
-        scroll-behavior: auto;
-      }
-
-      .lenis.lenis-smooth [data-lenis-prevent] {
-        overscroll-behavior: contain;
-      }
-
-      .lenis.lenis-stopped {
-        overflow: hidden;
-      }
-
-      .lenis.lenis-scrolling iframe {
-        pointer-events: none;
-      }
-    </style>
+    <script src="@libraries/lenis.ts"></script>
   </body>
 </html>
