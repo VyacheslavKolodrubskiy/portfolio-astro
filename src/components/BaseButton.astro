@@ -1,6 +1,6 @@
 ---
-import type { HTMLAttributes } from 'astro/types'
 import { Image } from 'astro:assets'
+import type { HTMLAttributes } from 'astro/types'
 
 type Props = HTMLAttributes<'button'> & {
   iconRight?: string
@@ -13,32 +13,30 @@ const { class: classes, iconRight, iconLeft, ...rest } = Astro.props
 <button
   type="button"
   class:list={['', classes]}
-  class="h-full py-4 px-6 border font-medium space-x-4 rounded-full"
+  class="h-full py-4 uppercase px-6 border flex items-center flex-nowrap font-medium space-x-4 rounded-full"
   {...rest}
 >
   {
-    iconLeft ? (
+    iconLeft && (
       <Image
-        src={iconLeft}
-        alt="icon-left"
+        src={`/${iconLeft}.svg`}
+        alt="Button icon left"
         width="20"
         height="20"
       />
-    ) : (
-      ''
     )
   }
-  <slot />
+  <span>
+    <slot />
+  </span>
   {
-    iconRight ? (
+    iconRight && (
       <Image
-        src={iconRight}
-        alt="icon-right"
+        src={`/${iconRight}.svg`}
+        alt="Button icon right"
         width="20"
         height="20"
       />
-    ) : (
-      ''
     )
   }
 </button>
