@@ -1,0 +1,12 @@
+---
+interface Props extends astroHTML.JSX.HTMLAttributes {}
+
+const { class: className } = Astro.props
+---
+
+<button
+  type="button"
+  class="py-6 px-4 rounded-full border border-white bg-black"
+>
+  <slot />
+</button>

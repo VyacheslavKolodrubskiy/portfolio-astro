@@ -1,11 +1,20 @@
 ---
-import TheHeader from '../components/TheHeader.astro'
-import Layout from '../layouts/Layout.astro'
+import Layout from '@layouts/Layout.astro'
+import TheHeader from '@components/TheHeader.astro'
+import TheFooter from '@components/TheFooter.astro'
+import SectionHero from '@sections/SectionHero.astro'
+import SectionAbout from '@sections/SectionAbout.astro'
+import SectionLatestWorks from '@sections/SectionLatestWorks.astro'
 ---
 
 <Layout title="Personal portfolio">
-  <div>
+  <div class="flex flex-col min-h-screen">
     <TheHeader />
-    <main></main>
+    <main class="flex-grow">
+      <SectionHero />
+      <SectionAbout />
+      <SectionLatestWorks />
+    </main>
+    <TheFooter />
   </div>
 </Layout>

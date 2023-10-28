@@ -1,0 +1,12 @@
+---
+interface Props extends astroHTML.JSX.HTMLAttributes {}
+
+const { class: classes } = Astro.props
+---
+
+<section class:list={['py-20 md:py-40', classes]}>
+  <div class="container">
+    <slot />
+  </div>
+  <h4></h4>
+</section>
