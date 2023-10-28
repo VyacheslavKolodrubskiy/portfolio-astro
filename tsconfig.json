@@ -1,13 +1,12 @@
 {
-  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "baseUrl": "C:/Users/admin/Desktop/portfolio-astro",
+    "baseUrl": ".",
     "paths": {
-      "@components/*": [
-        "src/components/*"
-      ],
       "@assets/*": [
         "src/assets/*"
+      ],
+      "@components/*": [
+        "src/components/*"
       ],
       "@layouts/*": [
         "src/layouts/*"
@@ -18,7 +17,7 @@
       "@sections/*": [
         "src/sections/*"
       ]
-    },
-    "jsx": "preserve"
-  }
+    }
+  },
+  "extends": "astro/tsconfigs/strict"
 }
