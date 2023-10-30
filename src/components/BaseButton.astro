@@ -13,8 +13,10 @@ const { class: classes, iconRight, iconLeft, ...rest } = Astro.props as Props
 <button
   type="button"
   aria-label="Button"
-  class:list={['', classes]}
-  class="h-full py-4 uppercase px-6 border flex items-center flex-nowrap font-medium space-x-4 rounded-full"
+  class:list={[
+    'h-full py-4 uppercase px-6 border flex items-center flex-nowrap font-medium space-x-4 rounded-full',
+    classes,
+  ]}
   {...rest}
 >
   {
@@ -22,8 +24,8 @@ const { class: classes, iconRight, iconLeft, ...rest } = Astro.props as Props
       <Image
         src={`/${iconLeft}.svg`}
         alt="Button icon left"
-        width="20"
-        height="20"
+        width="18"
+        height="18"
       />
     )
   }
@@ -35,8 +37,8 @@ const { class: classes, iconRight, iconLeft, ...rest } = Astro.props as Props
       <Image
         src={`/${iconRight}.svg`}
         alt="Button icon right"
-        width="20"
-        height="20"
+        width="18"
+        height="18"
       />
     )
   }
