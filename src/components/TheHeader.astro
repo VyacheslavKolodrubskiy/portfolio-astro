@@ -1,47 +1,11 @@
 ---
-import { Image } from 'astro:assets'
-
-interface link {
-  name: string
-  href: string
-}
-
-const links: link[] = [
-  {
-    name: 'About',
-    href: '#about',
-  },
-  {
-    name: 'Latest works',
-    href: '#latest-works',
-  },
-  {
-    name: 'Collaborations',
-    href: '#collaborations',
-  },
-]
+import BurgerMenu from './BurgerMenu.astro'
+import TheLogo from './TheLogo.astro'
 ---
 
 <header class="py-4">
   <div class="container flex items-center justify-between">
-    <a href="#hero">
-      <Image
-        src="/logo.svg"
-        width="40"
-        height="40"
-        alt="logo"
-      />
-    </a>
-    <nav>
-      <ul class="items-center flex text-[clamp(1rem,3vw,1.5rem)] space-x-10">
-        {
-          links.map((link) => (
-            <li>
-              <a href={link.href}>{link.name}</a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+    <TheLogo />
+    <BurgerMenu />
   </div>
 </header>

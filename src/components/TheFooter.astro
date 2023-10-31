@@ -1,4 +1,5 @@
 ---
+import { twMerge } from 'tailwind-merge'
 import type { HTMLAttributes } from 'astro/types'
 
 type Props = HTMLAttributes<'footer'>
@@ -7,7 +8,7 @@ const { class: classes, ...rest } = Astro.props as Props
 ---
 
 <footer
-  class:list={['md:py-6 py-4', classes]}
+  class:list={[twMerge('md:py-6 py-4', classes)]}
   {...rest}
 >
   <div class="container text-center">

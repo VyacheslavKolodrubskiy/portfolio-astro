@@ -1,0 +1,80 @@
+---
+import { twMerge } from 'tailwind-merge'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'button'>
+
+const { class: classes, ...rest } = Astro.props as Props
+
+interface link {
+  name: string
+  href: string
+}
+
+const links: link[] = [
+  {
+    name: 'About',
+    href: '#about',
+  },
+  {
+    name: 'Latest works',
+    href: '#latest-works',
+  },
+  {
+    name: 'Collaborations',
+    href: '#collaborations',
+  },
+]
+---
+
+<button
+  type="button"
+  class:list={twMerge('burger-menu w-10 h-10 space-y-1', classes)}
+  {...rest}
+>
+  {
+    Array.from({ length: 3 }).map(() => (
+      <div class="burger-menu__line w-full transition-all h-[1px] bg-white" />
+    ))
+  }
+</button>
+
+<nav
+  class="fixed bg-black z-50 w-full h-full top-0 left-0 transition-all duration-500 -translate-y-full"
+>
+  <ul
+    class="flex flex-col items-center justify-center h-full space-y-10 text-6xl font-medium tracking-tighter leading-none uppercase text-[clamp(1rem,3vw,1.5rem)]"
+  >
+    {
+      links.map((link) => (
+        <li>
+          <a href={link.href}>{link.name}</a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  const burgerMenu = document.querySelector('.burger-menu') as HTMLButtonElement
+
+  burgerMenu?.addEventListener('click', () => {
+    burgerMenu.classList.toggle('open')
+  })
+</script>
+
+<style>
+  .burger-menu.open > nav {
+    opacity: 1;
+    visibility: visible;
+  }
+  .burger-menu.open > .burger-menu__line:nth-child(1) {
+    transform: rotate(45deg) translate(0, 6px);
+  }
+  .burger-menu.open > .burger-menu__line:nth-child(2) {
+    opacity: 0;
+  }
+  .burger-menu.open > .burger-menu__line:nth-child(3) {
+    transform: rotate(-45deg) translate(0, -6px);
+  }
+</style>

@@ -6,18 +6,20 @@ import SectionAbout from '@sections/SectionAbout.astro'
 import SectionHero from '@sections/SectionHero.astro'
 import SectionLatestWorks from '@sections/SectionLatestWorks.astro'
 import SectionCollaborations from '@sections/SectionCollaborations.astro'
+import SectionWhatIDo from '@sections/SectionWhatIDo.astro'
 ---
 
 <BaseLayout
   title="Personal Portfolio"
   description="Welcome to my personal portfolio! I'm a passionate frontend developer with a strong focus on creating user-friendly and visually stunning web applications. Explore my work to see how I turn ideas into interactive and responsive websites. Let's collaborate and bring your web projects to life"
 >
-  <div class="flex flex-col min-h-screen overflow-x-hidden">
+  <div class="min-h-screen grid grid-rows-[auto, 1fr, auto]">
     <TheHeader />
-    <main class="flex-grow">
+    <main>
       <SectionHero />
       <SectionAbout />
       <SectionLatestWorks />
+      <SectionWhatIDo />
       <SectionCollaborations />
     </main>
     <TheFooter />

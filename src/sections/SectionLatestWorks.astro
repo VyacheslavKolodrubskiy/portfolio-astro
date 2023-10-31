@@ -1,6 +1,7 @@
 ---
 import type { HTMLAttributes } from 'astro/types'
 
+import { Image } from 'astro:assets'
 import BaseSection from '@components/BaseSection.astro'
 import Heading from '@components/Heading.astro'
 
@@ -24,8 +25,25 @@ const works = [
   <ul>
     {
       works.map((work) => (
-        <li class="py-10 text-[clamp(1rem,5vw,3rem)] border-t border-b">
-          {work.title}
+        <li class="flex items-center group text-[clamp(1rem,5vw,3rem)] border-t border-b">
+          <a
+            class="block w-full h-full py-10"
+            href="#"
+          >
+            <button
+              class="-ml-4 transition-all duration-500 opacity-0 group-hover:opacity-100 group-hover:ml-0 group-hover:mr-5 group-hover:opacity-1"
+              type="button"
+              aria-label="arrow"
+            >
+              <Image
+                src="/arrow-right.svg"
+                width="40"
+                height="40"
+                alt="Arrow right"
+              />
+            </button>
+            <span>{work.title}</span>
+          </a>
         </li>
       ))
     }

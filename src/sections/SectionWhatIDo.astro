@@ -1,0 +1,46 @@
+---
+import { Image } from 'astro:assets'
+import Heading from '@components/Heading.astro'
+import BaseSection from '@components/BaseSection.astro'
+
+const accordionItems = [
+  {
+    title: 'Focus-App Blocker',
+    desc: 'A simple and elegant app blocker for Focus-App.',
+  },
+  {
+    title: 'Indigence-Agency Website',
+    desc: 'A simple and elegant app blocker for Focus-App.',
+  },
+  {
+    title: 'Eneftee-NFT Launchpad Website',
+    desc: 'A simple and elegant app blocker for Focus-App.',
+  },
+]
+---
+
+<BaseSection>
+  <Heading>what i do?</Heading>
+
+  <ul>
+    {
+      accordionItems.map((item) => (
+        <li class="flex items-center cursor-pointer justify-between py-10 group text-[clamp(1rem,5vw,3rem)] border-t border-b">
+          <span>{item.title}</span>
+          <button
+            class="group-hover:rotate-45 transition-transform"
+            type="button"
+            aria-label="Plus icon"
+          >
+            <Image
+              src="/plus.svg"
+              width="40"
+              height="40"
+              alt="Plus icon"
+            />
+          </button>
+        </li>
+      ))
+    }
+  </ul>
+</BaseSection>

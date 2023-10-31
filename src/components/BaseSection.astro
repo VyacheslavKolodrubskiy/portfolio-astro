@@ -1,4 +1,5 @@
 ---
+import { twMerge } from 'tailwind-merge'
 import type { HTMLAttributes } from 'astro/types'
 
 type Props = HTMLAttributes<'section'>
@@ -7,7 +8,7 @@ const { class: classes, ...rest } = Astro.props as Props
 ---
 
 <section
-  class:list={['py-20 md:py-40', classes]}
+  class:list={[twMerge('py-20 md:py-30', classes)]}
   {...rest}
 >
   <div class="container">
