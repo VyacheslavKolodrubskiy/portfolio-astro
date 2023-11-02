@@ -8,7 +8,7 @@ const { class: classes, ...rest } = Astro.props as Props
 ---
 
 <section
-  class:list={[twMerge('py-20 md:py-30', classes)]}
+  class:list={twMerge('py-20 md:py-30 bg-black', classes)}
   {...rest}
 >
   <div class="container">

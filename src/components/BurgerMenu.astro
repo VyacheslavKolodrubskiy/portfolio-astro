@@ -1,4 +1,5 @@
 ---
+import Icon from 'astro-icon'
 import { twMerge } from 'tailwind-merge'
 import type { HTMLAttributes } from 'astro/types'
 
@@ -30,30 +31,38 @@ const links: link[] = [
 <button
   type="button"
   aria-label="Burger Menu"
-  class:list={twMerge('burger-menu w-10 h-10 z-50 space-y-1', classes)}
+  class:list={twMerge(
+    'burger-menu outline-none w-6 h-6 z-50 space-y-1',
+    classes
+  )}
+  class="transition-all"
   {...rest}
 >
   {
     Array.from({ length: 2 }).map(() => (
-      <div class="burger-menu__line w-full transition-all h-[1px] bg-white" />
+      <div class="burger-menu__line w-full transition-all h-[1px] bg-black" />
     ))
   }
 </button>
 
 <nav
-  class="nav-menu fixed bg-black invisible z-10 w-full h-full top-0 left-0 transition-all duration-500 -translate-y-full"
+  class="nav-menu fixed bg-white text-black z-40 w-full h-full top-0 right-0"
 >
-  <ul
-    class="flex px-4 flex-col justify-center h-full text-6xl font-medium tracking-tighter leading-none uppercase text-[clamp(1rem,5vw,20rem)]"
-  >
+  <ul class="flex p-6 flex-col justify-center h-screen">
     {
       links.map((link) => (
         <li class="py-5">
           <a
-            class="block w-full h-full"
+            class="inline-flex group items-center space-x-8"
             href={link.href}
           >
-            {link.name}
+            <span class="font-medium tracking-tighter leading-none uppercase text-[10vw]">
+              {link.name}
+            </span>
+            <Icon
+              class="w-[calc(1rem+5vw)] h-[calc(1rem+5vw)] -rotate-45 group-hover:visible group-hover:translate-x-0 transition-all invisible -translate-x-4"
+              name="mdi:arrow-right"
+            />
           </a>
         </li>
       ))
@@ -64,23 +73,51 @@ const links: link[] = [
 <script>
   const burgerMenu = document.querySelector('.burger-menu') as HTMLButtonElement
   const navMenu = document.querySelector('.nav-menu') as HTMLUListElement
+  const links = document.querySelectorAll(
+    '.nav-menu li'
+  ) as NodeListOf<HTMLLIElement>
 
-  burgerMenu?.addEventListener('click', () => {
-    burgerMenu.classList.toggle('burger-menu--open')
-    navMenu.classList.toggle('nav-menu--open')
+  links.forEach((link) => {
+    link.addEventListener('click', closeMenu)
   })
+
+  function handleKeyUp(event: KeyboardEvent) {
+    const isMenuOpen = burgerMenu?.classList.contains('burger-menu--open')
+
+    if (isMenuOpen && event.key === 'Escape') closeMenu()
+  }
+
+  function toggleMenu() {
+    burgerMenu?.classList.toggle('burger-menu--open')
+    navMenu?.classList.toggle('nav-menu--open')
+  }
+
+  function closeMenu() {
+    burgerMenu?.classList.remove('burger-menu--open')
+    navMenu?.classList.remove('nav-menu--open')
+  }
+
+  document.addEventListener('keyup', handleKeyUp)
+  burgerMenu?.addEventListener('click', toggleMenu)
 </script>
 
 <style>
+  nav {
+    transition: all 1s ease;
+    clip-path: circle(20px at calc(100% - 16px - 12px) calc(16px + 20px));
+  }
   .nav-menu--open {
     visibility: visible;
-    transform: translateY(0);
+    clip-path: circle(200% at 100% 0);
   }
 
+  .burger-menu.burger-menu--open > .burger-menu__line {
+    background: #000;
+  }
   .burger-menu.burger-menu--open > .burger-menu__line:nth-child(1) {
     transform: rotate(45deg) translate(0, 4px);
   }
   .burger-menu.burger-menu--open > .burger-menu__line:nth-child(2) {
-    transform: rotate(-45deg) translate(0, -2px);
+    transform: rotate(-45deg) translate(0, -4px);
   }
 </style>
