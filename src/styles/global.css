@@ -1,16 +1,20 @@
 html,
 body,
 :root {
-  /* height: 100%; */
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: 'Inter' sans-serif;
-  background: #000000;
-  color: #ffffff;
+  background: #000;
+  color: #fff;
 }
 
-/* html.lenis {
+html.lenis {
   height: auto;
 }
 
@@ -28,4 +32,4 @@ body {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
-} */
+}

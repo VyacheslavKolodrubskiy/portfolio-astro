@@ -12,8 +12,26 @@ const { title, description } = Astro.props as HeadProps
     {title}
     {description}
   />
-  <body>
+  <body class="overflow-x-hidden">
+    <video
+      class="absolute top-0 left-0 z-[-1]"
+      preload="auto"
+      poster="https://rhino-digital.com/themes/rhino/assets/images/module/hero/poster.jpg"
+      autoplay=""
+      muted=""
+      loop=""
+    >
+      <source
+        src="https://rhino-digital.com/themes/rhino/assets/images/module/hero/back.webm"
+        type="video/webm"
+      />
+      <source
+        src="https://rhino-digital.com/themes/rhino/assets/images/module/hero/back.mp4"
+        type="video/mp4"
+      />
+    </video>
+
     <slot />
-    <!-- <script src="@libs/lenis.ts"></script> -->
+    <script src="@libs/lenis.ts"></script>
   </body>
 </html>

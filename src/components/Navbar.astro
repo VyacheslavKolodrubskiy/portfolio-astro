@@ -1,0 +1,47 @@
+---
+import { twMerge } from 'tailwind-merge'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'button'>
+
+const { class: classes, ...rest } = Astro.props as Props
+
+interface link {
+  name: string
+  href: string
+}
+
+const links: link[] = [
+  {
+    name: 'About',
+    href: '#about',
+  },
+  {
+    name: 'Latest works',
+    href: '#latest-works',
+  },
+  {
+    name: 'Collaborations',
+    href: '#collaborations',
+  },
+]
+---
+
+<nav
+  class:list={twMerge('', classes)}
+  {...rest}
+>
+  <ul class="flex items-center space-x-8">
+    {
+      links.map((link) => (
+        <li>
+          <a href={link.href}>
+            <span class="font-medium tracking-tighter leading-none uppercase">
+              {link.name}
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
