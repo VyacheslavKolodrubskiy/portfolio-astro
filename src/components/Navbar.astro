@@ -36,12 +36,160 @@ const links: link[] = [
       links.map((link) => (
         <li>
           <a href={link.href}>
-            <span class="font-medium tracking-tighter leading-none uppercase">
-              {link.name}
-            </span>
+            <span data-link={link.name}>{link.name}</span>
           </a>
         </li>
       ))
     }
   </ul>
 </nav>
+
+<div class="cursor"></div>
+<script>
+  import gsap from 'gsap'
+
+  const links: NodeListOf<HTMLElement> | null =
+    document.querySelectorAll('nav ul li a')
+  const cursor: HTMLElement | null = document.querySelector('.cursor')
+
+  const parallaxIt = (
+    event: MouseEvent,
+    target: HTMLElement,
+    movement: number = 1
+  ): void => {
+    const boundingRect = (
+      event.currentTarget as HTMLElement
+    )?.getBoundingClientRect()
+    const relX = event.clientX - boundingRect.left
+    const relY = event.clientY - boundingRect.top
+    const scrollTop = window.scrollY || document.documentElement.scrollTop
+
+    gsap.to(target, {
+      x: (relX - boundingRect.width / 2) * movement,
+      y: (relY - boundingRect.height / 2 - scrollTop) * movement,
+      ease: 'power1',
+      duration: 0.6,
+    })
+  }
+
+  const callParallax = (event: MouseEvent): void => {
+    parallaxIt(event, event.currentTarget as HTMLElement)
+  }
+
+  links.forEach((link: HTMLElement) => {
+    link.addEventListener('mouseleave', (event: MouseEvent) => {
+      gsap.to(event.currentTarget, {
+        scale: 1,
+        x: 0,
+        y: 0,
+        ease: 'power3',
+        duration: 0.6,
+      })
+      removeHoverHandler()
+    })
+
+    link.addEventListener('mouseenter', () => {
+      onHoverHandler()
+    })
+
+    link.addEventListener('mousemove', (event: MouseEvent) => {
+      callParallax(event)
+    })
+  })
+
+  const setCursor = (event: MouseEvent): void => {
+    const mouseX = event.clientX
+    const mouseY = event.clientY
+    gsap.set(cursor, { force3D: true })
+
+    gsap.set(cursor, {
+      left: mouseX,
+      top: mouseY,
+    })
+  }
+
+  const onHoverHandler = (): void => {
+    gsap.to(cursor, {
+      scale: 3,
+    })
+  }
+
+  const removeHoverHandler = (): void => {
+    gsap.to(cursor, {
+      scale: 1,
+    })
+  }
+
+  document.body.addEventListener('mousemove', setCursor)
+</script>
+
+<style>
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  li {
+    margin: 0 2rem;
+  }
+  a {
+    position: relative;
+    display: inline-block;
+    font-size: 2rem;
+    color: inherit;
+    text-decoration: none;
+    overflow: hidden;
+  }
+  a:hover span {
+    transform: translateY(-105%);
+  }
+  a:hover span::before {
+    transform: skewY(5deg);
+  }
+  a:hover span::after {
+    transform: skewY(0);
+  }
+  a span {
+    display: inline-block;
+    color: transparent;
+    transition: transform 0.5s cubic-bezier(0.35, 1, 0.49, 1);
+  }
+  a span::before {
+    top: 0;
+    left: 0;
+    transform: skewY(0);
+    transform-origin: right bottom;
+    transition: transform 1s cubic-bezier(0.35, 1, 0.49, 1);
+  }
+  a span::after {
+    top: 105%;
+    transform: skewY(5deg);
+    transform-origin: left top;
+    transition: transform 1s cubic-bezier(0.35, 1, 0.49, 1);
+  }
+  a span::before,
+  a span::after {
+    content: attr(data-link);
+    display: block;
+    position: absolute;
+    color: white;
+  }
+
+  .cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    margin: -10px 0 0 -10px;
+    border-radius: 50%;
+    background-color: black;
+    will-change: transform;
+    pointer-events: none;
+    user-select: none;
+    mix-blend-mode: difference;
+    backdrop-filter: invert(1);
+    z-index: 10000;
+  }
+</style>
